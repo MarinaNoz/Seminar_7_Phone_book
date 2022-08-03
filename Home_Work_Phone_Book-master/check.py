@@ -17,13 +17,18 @@ def digit_check():
 def check_user_id():
     with open(path_to_db, 'r', encoding='utf-8') as file:
         data = json.load(file)
-        for i in range(0, len(data)):
-            item = data[i]
-            user_id = int(item['id'])
-#        print('Последний id', user_id)
-        user_id += 1
-        print('Будет добавлена запись с id', user_id)
-    return user_id
+        if len(data) == 0:
+            user_id = 0
+            print('Будет добавлена запись с id', user_id)
+            return user_id
+        else:
+            for i in range(0, len(data)):
+                item = data[i]
+                user_id = int(item['id'])
+    #        print('Последний id', user_id)
+            user_id += 1
+            print('Будет добавлена запись с id', user_id)
+        return user_id
 
 def check_fist_name():
     while True:
